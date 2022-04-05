@@ -16,27 +16,27 @@ exports.bmi = (payload) => {
     return result
   }
 
-  exports.calc = (num1, opcode, num2) => {
-    let _num1 = Number(num1)
-    let _num2 = Number(num2)
-    const result = {num1, opcode, num2}
-    switch(opcode){
-      case "+":
-        result.res = _num1 + _num2 
-        break;
-      case "-":
-        result.res = _num1 - _num2
-        break;
-      case "*":
-        result.res = _num1 * _num2
-        break;
-      case "/":
-        result.res = _num1 / _num2
-        break;
-      case "%":
-        result.res = _num1 % _num2
-        break;
-      }
-      return result
+exports.calc = (num1, opcode, num2) => {
+  let _num1 = Number(num1)
+  let _num2 = Number(num2)
+  const result = {num1, opcode, num2}
+  switch(opcode){
+    case "+":
+      result.res = _num1 + _num2 
+      break;
+    case "-":
+      result.res = _num1 - _num2
+      break;
+    case "*":
+      result.res = _num1 * _num2
+      break;
+    case "/":
+      result.res = _num1 / _num2
+      break;
+    case "%":
+      result.res = _num1 % _num2
+      break;
     }
+    return result
+  }
     
