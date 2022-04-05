@@ -1,5 +1,5 @@
 require('dotenv').config();
-var cors = require('cors')
+const cors = require('cors')
 const express = require('express');
 const res = require('express/lib/response');
 const mongoose = require('mongoose');
@@ -9,6 +9,12 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(cors());
+require('./app/routes/board.route')('/api/board', app)
+//require('./app/routes/users.route')('/api/user', app)
+//require('./app/routes/basic.route')('/api/basic', app)
+//require('./app/routes/game.route')('/api/game', app)
+//require('./app/routes/todo.route')('/api/todo', app)
+//require('./app/routes/admin.route')('/api/admin', app)
 var corsOptions = {
   origin: 'http://localhost:3000', 
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -32,27 +38,20 @@ app.get('/', (req, res) => {
 app.get('/api/now', cors(corsOptions), (req,res) => {
   res.json({"now": new Date().toLocaleString()})
 })
-app.post("/api/board/write", (req, res) => {
-  const {passengerId, name, teamId, subject} = req.body
-  console.log(`넘어온 JSON 값: ${JSON.stringify(req.body)}`)
-  console.log(`passengerId 값: ${passengerId}`)
-  console.log(`name 값: ${name}`)
-  console.log(`teamId 값: ${teamId}`)
-  console.log(`subject 값: ${subject}`)
-  res.json(req.body)
-})
+
 app.post("/api/basic/bmi", (req, res) => {
   const {name, height, weight} = req.body
   console.log(`넘어온 JSON 값: ${JSON.stringify(req.body)}`)
   console.log(`name: ${name}`)
   console.log(`height: ${height}`)
   console.log(`weight: ${weight}`)
-  const json = computeBMI(name, height, weight)
+  const json = computeBMI(req.body)
   console.log(`계산된 JSON 값: ${JSON.stringify(json)}`)
   res.json(json)
 })
 
-function computeBMI(name, height, weight){
+function computeBMI(payload){
+  const {name, height, weight} = payload
   let _height = Number(height);
   let _weight = Number(weight);
   let bmi = _weight*10000/Math.pow(_height,2);
