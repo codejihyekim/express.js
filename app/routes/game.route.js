@@ -1,9 +1,2 @@
-const express = require('express')
-const gameRouter = express.Router()
-
-gameRouter.use(function timeLog(req, res, next) {
-    console.log(' ### 게임 서버 ### ');
-    next();
-});
-
-module.exports = gameRouter;
+const { write } = require('../controllers/board.controller');
+module.exports = x => x.app.post(`${x.url}/write`, write) ;
