@@ -15,7 +15,7 @@ for(const leaf of nodes){
 }
 const corsOptions = {
   origin: 'http://localhost:3000', 
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200 
 }
 const db = require('./app/models/index')
 db.mongoose
