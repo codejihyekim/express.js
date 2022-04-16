@@ -1,9 +1,12 @@
 module.exports = mongoose => mongoose.model('user',
         mongoose.Schema(
-            {username: String,
-            password: String,
-            name: String,
-            telephone: String
+            {   userid: String,
+                phone: String,
+                password: String,
+                name: String,
+                email:String,
+                birth:String,
+                address:String,
             }, { timestamps: true}
         )
     )

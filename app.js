@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use(cors());
 const APP = './app/routes'
-//const nodes = ['admin','basic','board','game','todo','user']
-const nodes = ['basic','board','user']
+//const nodes = ['admin','basic','board','game','user']
+const nodes = ['basic','board','user','todo']
 for(const leaf of nodes){
   require(`${APP}/${leaf}.route`)({url:`/api/${leaf}`,app})
 }

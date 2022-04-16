@@ -1,9 +1,17 @@
-exports.write = (req, res) => {
-    const {passengerId, name, teamId, subject} = req.body
-    console.log(`넘어온 JSON 값: ${JSON.stringify(req.body)}`)
-    console.log(`passengerId 값: ${passengerId}`)
-    console.log(`name 값: ${name}`)
-    console.log(`teamId 값: ${teamId}`)
-    console.log(`subject 값: ${subject}`)
-    res.status(200).json({'result': 'ok'})
+const db  = require('../models/index')
+const TodoSchema = db.todo
+
+exports.todo = (req, res) => {
+    console.log(' ### 진행4: 노드서버에 진입함' + JSON.stringify(req.body))
+    new TodoSchema(req.body).save(()=>{
+        res.status(200).json({'result':'ok'})
+    })
+}
+
+exports.todolist = (req, res) => {
+    TodoSchema.find()
+    .exec((err, todos) => {
+        if(err) return res.status(400).send(err)
+        res.status(200).json({ success: true, todos})
+    })
 }
