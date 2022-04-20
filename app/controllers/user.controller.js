@@ -1,6 +1,7 @@
 const db = require('../models/index')
 const UserSchema = db.user
 
+
 exports.signUP = (req, res) => {
     console.log(' ### 진행4: 노드서버에 진입함' + JSON.stringify(req.body))
     
@@ -19,7 +20,16 @@ exports.userlist = (req, res) => {
 
 exports.profile = (req, res) => {
     console.log(`### user profile access ###`)
-    UserSchema.find({username: req.params.id})
+    UserSchema.find({userid: req.params.id})
+    .exec((err, user) => {
+        if (err) return res.status(400).send(err)
+        res.status(200).json({ success: true, user })
+    })
+}
+
+exports.login = (req, res) => {
+    console.log(`### user login access ###`)
+    UserSchema.find({userid: req.params.id, password: req.params.password})  
     .exec((err, user) => {
         if (err) return res.status(400).send(err)
         res.status(200).json({ success: true, user })
