@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise
 const db = {}
 db.mongoose = mongoose
 db.url = dotenv.MONGO_URI
-db.user = UserModel(mongoose)
-db.todo = TodoModel(mongoose)
-db.board = BoardModle(mongoose)
+db.User = UserModel(mongoose)
+db.Todo = TodoModel(mongoose)
+db.Board = BoardModle(mongoose)
 export default db
